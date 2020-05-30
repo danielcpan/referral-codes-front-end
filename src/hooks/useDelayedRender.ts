@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 const useDelayedRender = (delay: number) => {
   const [delayed, setDelayed] = useState(true);
@@ -8,7 +8,7 @@ const useDelayedRender = (delay: number) => {
     return () => clearTimeout(timeout);
   }, [delay]);
 
-  return (fn) => !delayed && fn();
+  return (fn: any) => !delayed && fn();
 };
 
 export default useDelayedRender;

@@ -1,14 +1,7 @@
-/* tslint:disable */
-import React from "react";
-import {
-  getIsLoading,
-  getIsFetching,
-  getHasError,
-  getHasData,
-} from "utils/react-query.utils";
+import { getIsLoading, getIsFetching, getHasError, getHasData } from 'utils/react-query.utils';
 
-const isFunction = (fnToCheck) => {
-  return fnToCheck && {}.toString.call(fnToCheck) === "[object Function]";
+const isFunction = fnToCheck => {
+  return fnToCheck && {}.toString.call(fnToCheck) === '[object Function]';
 };
 
 // interface IGetHookVals {
@@ -58,11 +51,7 @@ export const getComponentHasData = ({ hasData, hookVals }) => {
   return hasData || fnResult || hooksResult;
 };
 
-export const getComponent = (
-  injectedComponent,
-  defaultComponent,
-  { props } = {}
-) => {
+export const getComponent = (injectedComponent, defaultComponent, { props } = {}) => {
   let component = defaultComponent;
 
   if (injectedComponent) {
@@ -75,8 +64,8 @@ export const getComponent = (
 };
 
 export const render = ({ children, queries, mutations, hookVals }) => {
-  if (typeof children !== "function") {
-    throw Error("Async Component requires children to be a function");
+  if (typeof children !== 'function') {
+    throw Error('Async Component requires children to be a function');
   }
 
   if (hookVals.length === 1) return children(hookVals[0]);

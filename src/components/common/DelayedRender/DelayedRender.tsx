@@ -1,14 +1,11 @@
-import { useDelayedRender } from "hooks";
+import { useDelayedRender } from 'hooks';
 
-type DelayedRenderProps = {
+type IDelayedRender = {
   delay?: number;
   children: React.ReactNode;
 };
 
-const DelayedRender: React.FC<DelayedRenderProps> = ({
-  delay = 200,
-  children,
-}) => {
+const DelayedRender: React.FC<IDelayedRender> = ({ delay = 200, children }) => {
   return useDelayedRender(delay)(() => children);
 };
 

@@ -1,7 +1,9 @@
-import { useEffect, useRef } from "react";
+/* eslint consistent-return: 0 */
 
-const useInterval = (callback, delay) => {
-  const savedCallback = useRef();
+import { useEffect, useRef } from 'react';
+
+const useInterval = (callback: any, delay?: number) => {
+  const savedCallback = useRef<any>();
 
   // Remember the latest callback.
   useEffect(() => {
@@ -14,7 +16,7 @@ const useInterval = (callback, delay) => {
       savedCallback.current();
     }
     if (delay !== null) {
-      let id = setInterval(tick, delay);
+      const id = setInterval(tick, delay);
       return () => clearInterval(id);
     }
   }, [delay]);

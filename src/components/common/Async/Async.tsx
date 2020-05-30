@@ -1,16 +1,13 @@
-import React from "react";
-import {
-  Loading as DefaultLoading,
-  ServerError as DefaultServerError,
-} from "components/common";
+import React from 'react';
+import { Loading as DefaultLoading, ServerError as DefaultServerError } from 'components/common';
 import {
   getHookVals,
   getComponentIsLoading,
   getComponentIsFetching,
   getComponentHasError,
   getComponentHasData,
-  render,
-} from "./Async.utils";
+  render
+} from './Async.utils';
 
 interface IAsyncDefaultComponents {
   Loading: React.ReactNode;
@@ -50,10 +47,10 @@ const Async: React.FC<IAsync> = ({
     Loading = DefaultLoading,
     Fetching = DefaultLoading,
     Error = DefaultServerError,
-    NoData = <div>No Data!</div>,
+    NoData = <div>No Data!</div>
   } = {},
   manual = false, // Useful for disabling automatically computed states
-  children, // supports passing props
+  children // supports passing props
 }) => {
   const { queryVals, hookVals } = getHookVals({ queries, mutations });
 
@@ -61,8 +58,7 @@ const Async: React.FC<IAsync> = ({
 
   if (getComponentIsLoading({ hookVals, isLoading })) return Loading;
 
-  if (showFetching && getComponentIsFetching({ hookVals, isFetching }))
-    return Fetching;
+  if (showFetching && getComponentIsFetching({ hookVals, isFetching })) return Fetching;
 
   if (getComponentHasError({ hookVals, hasError })) return Error;
 
