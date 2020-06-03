@@ -9,7 +9,7 @@ const DefaultMobileToolbar: React.FC = () => {
   const { handleMobileDrawerToggle } = useContext(AppLayoutContext);
 
   return (
-    <AppBar position="fixed" className={classes.appBar}>
+    <AppBar position="fixed" elevation={0} className={classes.appBar}>
       <Toolbar className={classes.toolbar}>
         <IconButton edge="start" onClick={handleMobileDrawerToggle} className={classes.iconButton}>
           <MenuIcon />
@@ -29,7 +29,7 @@ const DefaultDesktopToolbar: React.FC = () => {
 
   return (
     <AppBar position="fixed" elevation={0} className={classes.appBar}>
-      <Toolbar className={classes.toolbar}>
+      <Toolbar className={classes.toolbar} style={{ backgroundColor: '##fafbfb' }}>
         <IconButton edge="start" onClick={handleLogoClick} className={classes.iconButton}>
           {/* <LogoIcon /> */}
         </IconButton>
