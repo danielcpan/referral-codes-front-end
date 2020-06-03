@@ -10,20 +10,22 @@ interface IAppLayoutContext {
   handleDesktopDrawerOpen: () => void;
   handleDesktopDrawerClose: () => void;
   handleMobileDrawerToggle: () => void;
-  handleNavChange: () => void;
+  handleNavChange: (e: React.ChangeEvent<{}>, idx: number) => void;
   handleLogoClick: () => void;
 }
 
 export const AppLayoutContext = createContext({} as IAppLayoutContext);
 
 const getNavIdx = (history: any) => {
-  const currentPath = history.location.pathname;
+  // console.log('history:', history);
+  // const currentPath = history.location.pathname;
   // if (currentPath === navLinks[0].url) return 0;
   // return navLinks.slice(1).findIndex(el => currentPath.includes(el.url)) + 1;
   return 0;
 };
 
 interface IAppLayoutProvider {
+  title?: string;
   children: React.ReactNode;
 }
 

@@ -1,12 +1,13 @@
 import React from 'react';
 import { useTheme } from '@material-ui/core/styles';
+import { Grid, Avatar, Typography, Button } from '@material-ui/core';
 import { Tabs, Tab } from './AppDrawer.styles';
-// import { navLinks } from '../constants';
+import { navLinks } from '../constants';
 
 interface INavLinks {
-  isOpen: boolean;
+  isOpen?: boolean;
   navTabIdx: number;
-  handleChange: () => void;
+  handleChange: (e: React.ChangeEvent<{}>, idx: number) => void;
   handleDrawerToggle?: () => void;
 }
 
@@ -14,29 +15,30 @@ const NavLinks: React.FC<INavLinks> = ({ isOpen, navTabIdx, handleChange, handle
   const theme = useTheme();
 
   return (
-    <div style={{ height: '100vh', paddingTop: 52 }}>
+    <>
       <Tabs
         orientation="vertical"
         indicatorColor="primary"
         value={navTabIdx}
         onChange={handleChange}
       >
-        {/* {navLinks.map(el => (
+        {navLinks.map(el => (
           <Tab
             key={el.name}
             icon={<div style={{ display: 'flex', margin: 0 }}>{el.icon}</div>}
             label={
-              <div style={{ textTransform: 'none', marginLeft: theme.spacing(2) }}>
+              <Typography style={{ textTransform: 'none', marginLeft: theme.spacing(2) }}>
                 {isOpen && el.name}
-              </div>
+              </Typography>
             }
             onClick={() => {
+              // eslint-disable-next-line no-unused-expressions
               handleDrawerToggle?.();
             }}
           />
-        ))} */}
+        ))}
       </Tabs>
-    </div>
+    </>
   );
 };
 

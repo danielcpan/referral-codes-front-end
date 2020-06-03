@@ -6,17 +6,16 @@ import AppToolbar from './AppToolbar/AppToolbar';
 import AppDrawer from './AppSidebar/AppDrawer';
 import { AppLayoutProvider } from './AppLayout.context';
 
-interface IAppContainer {
+interface IAppLayout {
   title?: string;
-  children: React.ReactNode;
+  children: any;
 }
 
-const AppContainer: React.FC<IAppContainer> = ({ user, title, children, ...rest }) => {
+const AppLayout: React.FC<IAppLayout> = ({ title, children, ...rest }) => {
   const classes = useStyles();
-  console.log('container user:', user);
 
   return (
-    <AppLayoutProvider title={title} user={user}>
+    <AppLayoutProvider title={title}>
       <div className={classes.root}>
         <CssBaseline />
         <AppToolbar />
@@ -32,4 +31,4 @@ const AppContainer: React.FC<IAppContainer> = ({ user, title, children, ...rest 
   );
 };
 
-export default AppContainer;
+export default AppLayout;

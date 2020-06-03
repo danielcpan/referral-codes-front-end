@@ -4,18 +4,14 @@ import { drawerWidth } from '../constants';
 
 export const useStyles = makeStyles(theme => ({
   drawerPaper: {
-    position: 'absolute',
-    whiteSpace: 'nowrap',
     width: drawerWidth,
-    backgroundColor: theme.palette.common.white,
-    borderRight: 'none'
+    backgroundColor: '#e9eff3',
+    overflow: 'hidden'
   },
-  drawerPaperClose: {
-    position: 'relative',
-    overflowX: 'hidden',
-    width: theme.spacing(7),
+  drawer: {
     [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(9)
+      width: drawerWidth,
+      flexShrink: 0
     }
   }
 }));
@@ -30,10 +26,7 @@ export const Tabs = withStyles({
 export const Tab = withStyles(theme => ({
   root: {
     minWidth: 0,
-    padding: '6px 12px 6px 24px',
-    '&:hover': {
-      backgroundColor: '#F8FCFC'
-    }
+    padding: '6px 12px 6px 24px'
   },
   labelIcon: {
     minHeight: 52

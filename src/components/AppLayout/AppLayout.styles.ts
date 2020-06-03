@@ -11,7 +11,7 @@ export const useStyles = makeStyles(theme => ({
   appBarSpacer: { minHeight: 52 },
   content: {
     flexGrow: 1,
-    overflow: 'auto',
+    // overflow: 'auto',
     marginTop: 52
   },
   container: {

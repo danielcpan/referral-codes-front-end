@@ -1,6 +1,6 @@
 import React, { useContext, memo } from 'react';
-import clsx from 'clsx';
-import { Drawer, Hidden } from '@material-ui/core';
+import { Avatar, Button, Drawer, Grid, Hidden, Typography } from '@material-ui/core';
+import { useTheme } from '@material-ui/core/styles';
 import NavLinks from './NavLinks';
 import { AppLayoutContext } from '../AppLayout.context';
 import { useStyles } from './AppDrawer.styles';
@@ -34,47 +34,64 @@ const DefaultMobileDrawer: React.FC = () => {
 };
 
 const DefaultDesktopDrawer: React.FC = () => {
+  const theme = useTheme();
   const classes = useStyles();
-  const {
-    isDesktopDrawerOpen,
-    navTabIdx,
-    handleDesktopDrawerOpen,
-    handleDesktopDrawerClose,
-    handleNavChange
-  } = useContext(AppLayoutContext);
+  const { navTabIdx, handleNavChange } = useContext(AppLayoutContext);
 
   return (
-    <div style={{ width: 72 }}>
-      {isDesktopDrawerOpen && <div style={{ width: 72, height: '100vh' }}></div>}
-      <Drawer
-        open={isDesktopDrawerOpen}
-        onMouseEnter={handleDesktopDrawerOpen}
-        onMouseLeave={handleDesktopDrawerClose}
-        classes={{
-          paper: clsx(classes.drawerPaper, !isDesktopDrawerOpen && classes.drawerPaperClose)
-        }}
-        variant="permanent"
+    <Drawer
+      variant="permanent"
+      classes={{
+        paper: classes.drawerPaper
+      }}
+      open
+    >
+      <Grid
+        container
+        alignItems="center"
+        spacing={2}
+        style={{ height: 104, padding: theme.spacing(2) }}
       >
-        <NavLinks
-          isOpen={isDesktopDrawerOpen}
-          navTabIdx={navTabIdx}
-          handleChange={handleNavChange}
-        />
-      </Drawer>
-    </div>
+        <Grid item>
+          <Avatar
+            src="https://miro.medium.com/fit/c/256/256/2*UDW41nU3KR_Q6YtFg5yVig.jpeg"
+            style={{ height: theme.spacing(6), width: theme.spacing(6) }}
+          />
+        </Grid>
+
+        <Grid item>
+          <Typography variant="body2" style={{ fontWeight: 'bold' }}>
+            Daniel Pan
+          </Typography>
+          <Button
+            variant="outlined"
+            color="primary"
+            size="small"
+            style={{ height: theme.spacing(2.5), textTransform: 'none' }}
+          >
+            Premium
+          </Button>
+        </Grid>
+      </Grid>
+      <NavLinks isOpen navTabIdx={navTabIdx} handleChange={handleNavChange} />
+    </Drawer>
   );
 };
 
-const AppDrawer: React.FC = memo(() => (
-  <>
-    <Hidden smUp>
-      <DefaultMobileDrawer />
-    </Hidden>
+const AppDrawer: React.FC = memo(() => {
+  const classes = useStyles();
 
-    <Hidden xsDown>
-      <DefaultDesktopDrawer />
-    </Hidden>
-  </>
-));
+  return (
+    <nav className={classes.drawer}>
+      <Hidden smUp>
+        <DefaultMobileDrawer />
+      </Hidden>
+
+      <Hidden xsDown>
+        <DefaultDesktopDrawer />
+      </Hidden>
+    </nav>
+  );
+});
 
 export default AppDrawer;
